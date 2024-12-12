@@ -1,16 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class AdvisorUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    email = models.EmailField("email address", unique=True)
-    advisor_name = models.CharField("Advisor Name", max_length=256, blank=False)
     advisor_phone_number = models.CharField("Advisor Phone Number", max_length=256, blank=False)
-    # needs a role, advisor, volunteer, vendor, judge, workshop teacher.
+    role = models.CharField("Role", max_length=256)
 
     def __str__(self):
         return self.advisor_name
+
+
+@receiver(post_save, sender=User)
+def create_advisor_user(sender, instance, created, **kwargs):
+    if created:
+        AdvisorUser.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_advisor_user(sender, instance, created, **kwargs):
+    instance.profile.save()
+    # needs a role, advisor, volunteer, vendor, judge, workshop teacher.
+
 
 
 # Create your models here.
