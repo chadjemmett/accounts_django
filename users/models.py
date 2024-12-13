@@ -9,9 +9,6 @@ class AdvisorUser(models.Model):
     advisor_phone_number = models.CharField("Advisor Phone Number", max_length=256, blank=False)
     role = models.CharField("Role", max_length=256)
 
-    def __str__(self):
-        return self.advisor_name
-
 
 @receiver(post_save, sender=User)
 def create_advisor_user(sender, instance, created, **kwargs):
@@ -20,7 +17,7 @@ def create_advisor_user(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_advisor_user(sender, instance, created, **kwargs):
-    instance.profile.save()
+    instance.advisoruser.save()
     # needs a role, advisor, volunteer, vendor, judge, workshop teacher.
 
 
