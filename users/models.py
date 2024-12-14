@@ -13,11 +13,12 @@ class AdvisorUser(models.Model):
 @receiver(post_save, sender=User)
 def create_advisor_user(sender, instance, created, **kwargs):
     if created:
-        AdvisorUser.objects.create(user=instance)
+        AdvisorUser.objects.create(user=instance,
+                                   advisor_phone_number=instance.advisoruser.advisor_phone_number)
 
-@receiver(post_save, sender=User)
-def save_advisor_user(sender, instance, created, **kwargs):
-    instance.advisoruser.save()
+# @receiver(post_save, sender=User)
+# def save_advisor_user(sender, instance, created, **kwargs):
+#     instance.advisoruser.save()
     # needs a role, advisor, volunteer, vendor, judge, workshop teacher.
 
 

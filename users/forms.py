@@ -10,7 +10,9 @@ from django import forms
 class AdvisorCreationForm(UserCreationForm):
     email = forms.EmailField()
     advisor_phone_number = forms.CharField(label="Contact Number", max_length=255)
+    first_name = forms.CharField(label="First Name", max_length=255)
+    last_name = forms.CharField(label="Last Name", max_length=255)
 
     # class Meta:
-    #    model = AdvisorUser
-    #    fields = ("advisor_phone_number",)
+    #    model = 
+    #    fields = ('first_name', 'last_name', )
