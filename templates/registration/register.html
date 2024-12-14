@@ -1,11 +1,13 @@
-
+{% load django_bootstrap5 %}
 
 <h1>Register Here</h1>
 
 
 
-<form action="register" method="POST">
+<form action="register" method="POST" class="form">
+
     {% csrf_token %}
-    {{ form }}
-    <button type="submit" value="submit">Register</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Register" %}
+
 </form>
