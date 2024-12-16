@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, AuthenticationForm
 from . models import AdvisorUser
 from django import forms
 
@@ -13,6 +13,7 @@ class AdvisorCreationForm(UserCreationForm):
     first_name = forms.CharField(label="First Name", max_length=255)
     last_name = forms.CharField(label="Last Name", max_length=255)
 
-    # class Meta:
-    #    model = 
-    #    fields = ('first_name', 'last_name', )
+
+
+class AdvisorLoginForm(AuthenticationForm):
+    pass

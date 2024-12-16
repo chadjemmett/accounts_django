@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
-from . forms import AdvisorCreationForm
+from django.contrib.auth.views import LoginView
+from . forms import AdvisorCreationForm, AdvisorLoginForm
 from django.contrib.auth.models import User
 from . models import AdvisorUser
 
@@ -31,6 +32,22 @@ def register(request):
     else:
         form = AdvisorCreationForm(request.POST)
         return render(request, 'registration/register.html', {"form": form })
+
+
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            redirect("dashboard")
+            
+    else:
+        form = AdvisorLoginForm()
+        return render(requests, "login.html", {"form": form})
+
+
 
 
 def user_logout(request):
