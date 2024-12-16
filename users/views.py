@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, authenticate, logout
 from . forms import AdvisorCreationForm
 from django.contrib.auth.models import User
 from . models import AdvisorUser
@@ -26,8 +27,21 @@ def register(request):
                     last_name=last_name,
                     )
             
-            return redirect("login")
+            return redirect("dashboard")
     else:
         form = AdvisorCreationForm(request.POST)
         return render(request, 'registration/register.html', {"form": form })
+
+
+def user_logout(request):
+    logout(request)
+    return render(requests, "login.html")
+
+# needs a login page to redirect to.
+@login_required()
+def dashboard(request):
+    #show the options to access here. For students. For Teams etc. This is for Advisors
+    return render(request, "dashboard.html")
+
+
 
