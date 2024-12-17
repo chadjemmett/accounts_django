@@ -1,11 +1,11 @@
+{% extends "base.html" %}
 {% load django_bootstrap5 %}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
 
 
 <h1>Register Here</h1>
 
 
+{% block content %}
 
 <form action="register" method="POST" class="form">
 
@@ -14,3 +14,5 @@
     {% bootstrap_button button_type="submit" content="Register" %}
 
 </form>
+
+{% endblock content %}
