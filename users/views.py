@@ -45,7 +45,7 @@ def user_login(request):
             
     else:
         form = AdvisorLoginForm()
-        return render(requests, "login.html", {"form": form})
+        return render(request, "registration/login.html", {"form": form})
 
 
 
