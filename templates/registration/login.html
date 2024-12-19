@@ -7,7 +7,8 @@
 
 <form method="POST">
     {% csrf_token %}
-    {{ form }}
-    <button id="submit_id" type="submit">Log In</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Login" %}
+
 </form>
 {% endblock content %}

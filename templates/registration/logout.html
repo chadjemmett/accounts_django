@@ -1,1 +1,10 @@
-<h1>Create Your account</h1>
+{% extends 'base.html' %}
+
+{% load django_bootstrap5 %}
+{% block content %}
+
+<h1> Thank you for using our App </h1>
+
+<a href="{% url 'login' %}">Log in Again</a>
+
+{% endblock content %}

@@ -34,19 +34,6 @@ def register(request):
         return render(request, 'registration/register.html', {"form": form })
 
 
-def user_login(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            redirect("dashboard")
-            
-    else:
-        form = AdvisorLoginForm()
-        return render(request, "registration/login.html", {"form": form})
-
 
 
 
